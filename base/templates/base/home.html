@@ -7,18 +7,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
+    
     {%block content%}
-        <h1>new home template</h1>
-        <div>
-            {% for room in rooms %}
+    <style>
+        .home-container{
+            display: flex;
+            padding-right: 50px;
+        }
+        .browse_topics{
+            margin-right: 20px;
+        }
+    </style>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {%endif%}
+
+        <div class="home-container">
+            <div class="browse_topics">
+                <h3>Browse topics</h3>
+                <hr>
+
                 <div>
-                    <a href="/room/{{room.id}}"><h3>{{room.id}} -- {{room.name}}</h3></a>
+                    <h3>
+                        <a href="{% url 'home' %}">All</a>
+                    </h3>
                 </div>
-            {% endfor %}
+                <div>
+                    {% for topic in topics %}
+                        <h3>
+                            <a href="{% url 'home' %}?q={{topic}}">{{topic}}</a>
+                        </h3>
+                    {% endfor %}
+                    <hr>
+                </div>
+            </div>
+
+            
+            <div>
+                <a href="{% url 'addroom' %}">create room</a>
+
+                <h5>{{room_count}} rooms available</h5>
+                {% for room in rooms %}
+                {% if request.user == room.host %}
+                <a href="{% url 'updateroom' room.id %}">Edit</a>
+                <a href="{% url 'deleteroom' room.id %}">Delete</a>
+                {% endif %}
+                    <div>
+                        <span>@{{room.host.username}}</span>
+                        <a href="/room/{{room.id}}"><h3>{{room.id}} - {{room.name}}</h3></a>
+                        <small>{{room.topic.name}}</small>
+                        <hr>
+                    </div>
+                {% endfor %}
+                
+
+        </div>
     {%endblock%}
     
-    </div>
 </body>
 </html>

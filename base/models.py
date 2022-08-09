@@ -9,7 +9,7 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
-# one topic can have many Rooms , one room can have many users , cone user can have many messages
+# one topic can have many Rooms , one room can have many users , one user can have many messages
 class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null = True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
@@ -20,6 +20,9 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-updated', '-created']
+
     def __str__(self):
         return self.name
 
@@ -29,7 +32,7 @@ class Room(models.Model):
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    body = models.TextField(max_length=1000)
+    body = models.TextField(max_length=200)
     updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
