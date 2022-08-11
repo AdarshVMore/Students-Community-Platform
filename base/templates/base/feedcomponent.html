@@ -3,7 +3,7 @@
 <a href="{% url 'deleteroom' room.id %}">Delete</a>
 {% endif %}
 <div>
-  <span>@{{room.host.username}}</span>
+  <span><a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></span>
   <a href="/room/{{room.id}}"><h3>{{room.id}} - {{room.name}}</h3></a>
   <small>{{room.topic.name}}</small>
   <hr />
