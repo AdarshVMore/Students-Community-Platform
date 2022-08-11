@@ -16,7 +16,7 @@ class Room(models.Model):
     name = models.CharField(max_length=200)
     # null means empyt description which by default is false meaning it cant be kept empty by setting it to true u say you can keep description box blank
     description = models.TextField(null=True, blank=True)
-    # participants = 
+    participants = models.ManyToManyField(User, related_name='participants', blank=True) 
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -33,7 +33,9 @@ class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField(max_length=200)
+    created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
 
+    
     def __str__(self):
         return self.body[0:50]

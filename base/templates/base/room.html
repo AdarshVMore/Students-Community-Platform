@@ -1,17 +1,56 @@
-{%extends 'main.html'%}
+{% extends 'main.html' %} {%block content%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>room</title>
-</head>
-<body>
-    {%block content%}
-    <h1>room template</h1>
-        <h3>{{room.name}} is here </h3>
-    {%endblock%}
-</body>
-</html>
+<style>
+  .room-container {
+    display: flex;
+  }
+</style>
+
+<div class="room-container">
+  <div>
+    <h3>{{room.name}}</h3>
+
+    <p>{{room.description}}</p>
+
+    <div class="comment-wrapper">
+      <h3>conversation</h3>
+      <hr />
+
+      {% for message in allmessages%}
+      <div>
+        {% if request.user == message.user%}
+        <a href="{% url 'deletemessage' message.id %}">Delete</a>
+        {% endif %}
+        <small>@{{message.user}} {{message.created|timesince}} ago</small>
+        <p>{{message.body}}</p>
+        <hr />
+      </div>
+      {% endfor %}
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="comment-form">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="body"
+          placeholder="write ur message here....."
+        />
+      </form>
+    </div>
+    {% endif %}
+  </div>
+  <div>
+    <h3>participants</h3>
+
+    {% for user in participants %}
+    <div>
+      <p>@{{user.username}}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+</div>
+{%endblock%}
