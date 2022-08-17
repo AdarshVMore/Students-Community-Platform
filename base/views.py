@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
+from .forms import ModifiedForm
 from .forms import RoomForm
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
@@ -50,7 +52,7 @@ def logoutpage(request):
     return redirect('home')
 
 def registerpage(request):
-    form = UserCreationForm(request.POST)
+    form = ModifiedForm(request.POST)
     if form.is_valid():
         user = form.save(commit=False)
         user.username = user.username.lower()
@@ -76,6 +78,18 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 def room(request, x):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q)
+        ) 
+
+    room_count = rooms.count() 
+    topics =  Topic.objects.all()
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q)).order_by('-created')
+
+
     room = Room.objects.get(id=x)
     allmessages = room.message_set.all()
     participants = room.participants.all()
@@ -89,8 +103,8 @@ def room(request, x):
         room.participants.add(request.user)
         return redirect('room', x=room.id)
 
-    context = {'room': room , 'allmessages': allmessages, 'participants':participants}
-    return render(request, 'base/room.html', context)
+    context = {'room': room , 'allmessages': allmessages, 'participants':participants, 'rooms': rooms,'topics':topics, 'room_count':room_count, 'room_messages':room_messages}
+    return render(request, 'base/home.html', context)
 
 def userProfile(request, x):
     user = User.objects.get(id=x)

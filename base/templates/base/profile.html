@@ -9,20 +9,24 @@
     }
 </style>
 
-<h1>{{user.username}}</h1>
+
 
 <div class="profile-container">
     <div>
         {% include 'base/topicssection.html' %}
     </div>
 
-    <div>
+    <div class="details">
+        <h1>{{user.username}}</h1>
+    </div>
+
+    <!-- <div>
         {% include 'base/feedcomponent.html' %}
     </div>
 
     <div>   
         {% include 'base/activitysection.html' %}
-    </div>
+    </div> -->
 </div>
 
 {% endblock %}

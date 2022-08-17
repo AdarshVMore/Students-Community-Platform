@@ -1,6 +1,7 @@
 {% extends 'main.html' %} {%block content%}
 
 <style>
+  
   .room-container {
     display: flex;
   }
@@ -11,6 +12,7 @@
     <h3>{{room.name}}</h3>
 
     <p>{{room.description}}</p>
+
 
     <div class="comment-wrapper">
       <h3>conversation</h3>
@@ -31,11 +33,7 @@
     <div class="comment-form">
       <form action="" method="POST">
         {% csrf_token %}
-        <input
-          type="text"
-          name="body"
-          placeholder="write ur message here....."
-        />
+        <input type="text" name="body" placeholder="write ur message here....." />
       </form>
     </div>
     {% endif %}
