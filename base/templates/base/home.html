@@ -2,15 +2,28 @@
 
 
 {%block content%}
+
+
+
 <style>
+    :root{
+    --top-nav-bgc: #00e1ff;
+    --left-most-bgc: #18e4ff;
+    --create-room-bgc: #33e7ff;
+    }
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
+    hr{
+        opacity: 50%;
+        
+        
+    }
 
     .logo h3 {
-        background-color: #00e1ff;
+        background-color: var(--top-nav-bgc);
 
     }
 
@@ -20,7 +33,7 @@
         width: 100vw;
         box-shadow: 0px 0px 7px black;
         height: 12vh;
-        background-color: #00e1ff;
+        background-color: var(--top-nav-bgc);
     }
 
     .top-right-nav {
@@ -29,18 +42,18 @@
         width: 100vw;
         justify-content: right;
         margin-right: 50px;
-        background-color: #00e1ff;
+        background-color: var(--top-nav-bgc);
 
     }
 
     .top-right-nav h3 {
         margin-right: 20px;
-        background-color: #00e1ff;
+        background-color: var(--top-nav-bgc);
 
     }
 
     .top-right-nav a {
-        background-color: #00e1ff;
+        background-color: var(--top-nav-bgc);
 
     }
 
@@ -52,25 +65,42 @@
         display: flex;
         height: 88vh;
         width: 100vw;
-        justify-content: space-evenly;
+        justify-content: flex-start;
     }
 
     .browse_topics {
-        padding: 0 5px;
+        background-color: var(--left-most-bgc);
     }
+    .browse_topics ul li a, .app-section ul li{
+        background-color: var(--left-most-bgc);
+        list-style: none;
+        padding-left: 4px;
+    }
+
     .create-room{
         display: flex;
         flex-direction: column;
-        padding: 0 10px 0 5px;
+        background-color: var(--create-room-bgc);
+        width: 225px;
     }
-    .home-container .recent-activity{
-        display: flex;
-        justify-content: right;
+    .create-room .top , .create-room .top a, .create-room .top h5{
+        background-color: var(--create-room-bgc);
+        padding-left: 4px;
     }
+
+
     .chat-section{
         display: flex;
         padding-right: 5vw;
     }
+
+
+    .home-container .recent-activity{
+        display: flex;
+        justify-content: right;
+    }
+
+
     
 </style>
 
@@ -106,6 +136,7 @@
                 <li><a href="">trade</a></li>
                 <li><a href="">work</a></li>
             </ul>
+            <hr>
         </div>
         {% include 'base/topicssection.html' %}
     </div>
@@ -118,7 +149,7 @@
         </div>
 
 
-        <div>
+        <div class="all-rooms">
             {% include 'base/feedcomponent.html'%}
         </div>
 

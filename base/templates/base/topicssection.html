@@ -1,16 +1,32 @@
-<h3>Browse topics</h3>
-<hr />
+<style>
+  .topic-section h3{
+    width: 150px;
+  }
+  .topic-section h3, .topics h3 , .topics h3 a {
+    background-color: var(--left-most-bgc);
+    padding-left: 4px;
 
-<div>
-  <h3>
-    <a href="{% url 'home' %}">All</a>
-  </h3>
-</div>
-<div>
-  {% for topic in topics %}
-  <h3>
-    <a href="{% url 'home' %}?q={{topic}}">{{topic}}</a>
-  </h3>
-  {% endfor %}
+  }
+</style>
+
+<div class="topic-section">
+  <h3>Browse topics</h3>
   <hr />
+
+  <div class="topics">
+    <div>
+      <h3>
+        <a href="{% url 'home' %}">All</a>
+      </h3>
+    </div>
+    <div>
+      {% for topic in topics %}
+      <h3>
+        <a href="{% url 'home' %}?q={{topic}}">{{topic}}</a>
+      </h3>
+      {% endfor %}
+      <hr />
+    </div>
+
+  </div>
 </div>

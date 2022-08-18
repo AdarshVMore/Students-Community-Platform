@@ -1,11 +1,25 @@
-{% for room in rooms %} {% if request.user == room.host %}
-<a href="{% url 'updateroom' room.id %}">Edit</a>
-<a href="{% url 'deleteroom' room.id %}">Delete</a>
-{% endif %}
-<div>
-  <span><a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></span>
-  <a href="/room/{{room.id}}"><h3>{{room.name}}</h3></a>
-  <small>{{room.topic.name}}</small>
-  <hr />
+<style>
+  .room-section, .room-section a,.room-section div, .room-section span , .room-section small, .room-section h3{
+    background-color: var(--create-room-bgc);
+    padding-left: 4px;
+
+  }
+</style>
+
+
+
+<div class="room-section">
+  {% for room in rooms %} {% if request.user == room.host %}
+  <a href="{% url 'updateroom' room.id %}">Edit</a>
+  <a href="{% url 'deleteroom' room.id %}">Delete</a>
+  {% endif %}
+  <div>
+    <span><a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></span>
+    <a href="/room/{{room.id}}">
+      <h3>{{room.name}}</h3>
+    </a>
+    <small>{{room.topic.name}}</small>
+    <hr />
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
