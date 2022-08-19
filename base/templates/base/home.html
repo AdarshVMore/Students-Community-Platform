@@ -99,8 +99,10 @@
         display: flex;
         justify-content: right;
     }
-
-
+    .main-container{
+        width: 70vw;
+        display: flex;
+    }
     
 </style>
 
@@ -155,12 +157,14 @@
 
     </div>
 
-    <div class="chat-section">
-        {%include 'base/room.html' %}
-    </div>
-
-    <div>
-        {%include 'base/index.html' %}
+    <div class="main-container">
+        <div class="chat-section">
+            {%include 'base/room.html' %}
+        </div>
+    
+        <div>
+            {%include 'base/index.html' %}
+        </div>
     </div>
 
     <!-- <div class="recent-activity">

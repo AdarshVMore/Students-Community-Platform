@@ -240,7 +240,7 @@ def upload(request):
         new_post = Post.objects.create(user=user, image=image, caption=caption)
         new_post.save()
 
-        return redirect('/learn')
+        return render(request, 'base/home.html')
     else:
-        return redirect('/learn')
+        return render(request, 'base/home.html')
 
