@@ -47,6 +47,28 @@
     </div>
     {% endfor %}
   </div>
+  <div>
+    <div>
+      <h3>Recent Activity</h3>
+    <hr />
+    {% for message in room_messages %}
+    <div>
+      <p>
+        <a href="{% url 'profile' message.user.id%}">@{{message.user}}</a> {{message.created|timesince}}
+        <small> in "{{message.room}}" says</small>
+      </p>
+    
+      <div>
+        <p>{{message}}</p>
+      </div>
+      {% if request.user == message.user%}
+      <a href="{% url 'deletemessage' message.id %}">Delete</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+    
+    </div>
+  </div>
 
 
 

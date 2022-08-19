@@ -15,6 +15,8 @@ urlpatterns = [
     path('deleteroom/<str:x>/', views.deleteRoom , name = 'deleteroom'),
     path('deletemessage/<str:x>/', views.deleteMessage , name = 'deletemessage'),
 
+    path('learn/', views.learnSection, name='learn'),
+    path('upload/', views.upload, name='upload'),
 
     
 
