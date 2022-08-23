@@ -24,6 +24,7 @@
 
 <body>
     {% block content %}
+    
 
     <header>
         <div class="header_inner">
@@ -78,7 +79,7 @@
                                     <textarea class="button soft-warning small" name="caption"
                                         placeholder="caption..."></textarea>
                                     <br>
-                                    <button class="button bg-blue-700" type="submit">Upload</button>
+                                    <a href="upload"><button class="button bg-blue-700" type="submit">Upload</button></a>
                                 </div>
                             </form>
 
@@ -101,7 +102,12 @@
     </header>
 
     <div class="container m-auto">
-
+    <div>
+        {% for post in posts %}
+        <h1>{{post.user}}</h1>
+        <img src="{{post.image.url}}" alt="">
+        {% endfor %}
+    </div>
 
         <div class="lg:flex justify-center lg:space-x-10 lg:space-y-0 space-y-5">
 
@@ -109,7 +115,8 @@
 
                 <!-- post 1-->
 
-                {% for post in posts reversed %}
+                {% for post in posts %}
+                
                 <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
 
                     <!-- post header-->

@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('login/', views.loginpage, name='login'),
     path('logout/', views.logoutpage, name='logout'),
@@ -15,8 +18,7 @@ urlpatterns = [
     path('deleteroom/<str:x>/', views.deleteRoom , name = 'deleteroom'),
     path('deletemessage/<str:x>/', views.deleteMessage , name = 'deletemessage'),
 
-    path('learn/', views.learnSection, name='learn'),
-    path('upload/', views.upload, name='upload'),
+    path('learn/', views.learn, name='learn'),
 
     
 
@@ -24,3 +26,5 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -97,12 +97,18 @@
 
     .home-container .recent-activity{
         display: flex;
+        flex-direction: column;
         justify-content: right;
     }
     .main-container{
         width: 70vw;
         display: flex;
     }
+
+
+
+
+
     
 </style>
 
@@ -133,10 +139,10 @@
             <ul class="links">
                 <li><a href="/">chat</a></li>
                 <li><a href="{% url 'learn' %}">learn</a></li>
-                <li><a href="">stalk</a></li>
-                <li><a href="">doubt</a></li>
-                <li><a href="">trade</a></li>
-                <li><a href="">work</a></li>
+                <li><a href="/">stalk</a></li>
+                <li><a href="/">doubt</a></li>
+                <li><a href="/">trade</a></li>
+                <li><a href="/">work</a></li>
             </ul>
             <hr>
         </div>
@@ -163,14 +169,9 @@
         </div>
     
         <div>
-            {%include 'base/index.html' %}
+            {%include 'base/learn.html' %}
         </div>
     </div>
-
-    <!-- <div class="recent-activity">
-        {% include 'base/activitysection.html' %}
-    </div> -->
-
 
 </div>
 {%endblock%}

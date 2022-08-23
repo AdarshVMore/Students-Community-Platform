@@ -1,0 +1,44 @@
+
+{% if user.is_authenticated%}
+<div class="upload">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="upload-img">
+            <label for="file">Select Image:</label>
+            <input type="file" placeholder="Thumbnail" name="image"></input>
+        </div>
+        <div class="subject">
+            <label for="Subject">Subject: </label>
+            <input type="text" name="subject"></input>
+        </div>
+        <div class="meet-link">
+            <label for="meet-link">Link: </label>
+            <input type="text" name="link"></input>
+        </div>
+        <div class="description">
+            <label for="description">Description: </label>
+            <input type="text" name="description" id="description"></input>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+{% endif%}
+
+<div class="uploaded-imgs">
+    {% for post in posts %}
+    <div class="upload-top">
+        <a href="{%url 'profile' user.id%}"><h3>@{{post.user}}</h3></a>
+        <p>{{post.updated | timesince}}</p>
+    </div>
+    <div class="thumbnail"><img src="{{post.image.url}}" alt=""></div>
+    <h3>{{post.subject}}</h3>
+    <a href="{{post.link}}" target="_blank">{{post.link}}</a>
+    <p>{{post.description}}</p>
+    
+
+    <hr>
+    <br>
+    {% endfor %}
+
+</div>

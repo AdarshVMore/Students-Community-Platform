@@ -2,7 +2,7 @@ from dataclasses import fields
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Room
+from .models import Post, Room
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -17,3 +17,9 @@ class RoomForm(ModelForm):
         model = Room
         fields = '__all__'
         exclude = ['host', 'participants']
+
+class UploadPost(ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        exclude = ['id','created']
