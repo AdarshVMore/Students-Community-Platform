@@ -2,15 +2,16 @@ from dataclasses import fields
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Post, Room
+from .models import Post, Room, UpdateProfile
 from django.contrib.auth.forms import UserCreationForm
 
 
 class ModifiedForm(UserCreationForm):
     email = forms.EmailField()
+    identity = forms.ImageField()
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'identity']
 
 class RoomForm(ModelForm):
     class Meta:
@@ -23,3 +24,9 @@ class UploadPost(ModelForm):
         model = Post
         fields = '__all__'
         exclude = ['id','created']
+
+class Profile(ModelForm):
+    class Meta:
+        model = UpdateProfile
+        fields = '__all__'
+        exclude = ['username']

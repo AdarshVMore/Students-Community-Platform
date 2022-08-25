@@ -12,6 +12,7 @@ urlpatterns = [
     path('', views.home, name = 'home'),
     path('room/<str:x>', views.room, name = 'room'),
     path('profile/<str:x>', views.userProfile, name = 'profile'),
+    path('updateprofile/', views.profile, name='updateprofile'),
 
     path('addroom/', views.addroom , name = 'addroom'),
     path('updateroom/<str:x>/', views.updateRoom , name = 'updateroom'),
@@ -19,6 +20,8 @@ urlpatterns = [
     path('deletemessage/<str:x>/', views.deleteMessage , name = 'deletemessage'),
 
     path('learn/', views.learn, name='learn'),
+    path('deletepost/<int:x>', views.deletePost , name = 'deletepost'),
+
 
     
 

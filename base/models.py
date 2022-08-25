@@ -9,6 +9,22 @@ from datetime import datetime
 
 # Create your models here.
 
+class UpdateProfile(models.Model):
+    skill = (
+        ("webdevelopment", "webdevelopment"),
+        ("DSA", "DSA"),
+        ("Android development", "Android development"),
+        ("Compitative programming", "Compitative programming"),
+        ("AWS", "AWS"),
+    )
+
+    ProfilePic = models.ImageField()
+    name = models.CharField(max_length=200)
+    username = models.ForeignKey(User, on_delete=models.SET_NULL, null = True)
+    bio = models.TextField(max_length=1000)
+    skills = models.CharField(choices=skill, max_length=50)
+    email = models.EmailField()
+
 class Topic(models.Model):
     name = models.CharField(max_length=200)
 

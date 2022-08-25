@@ -17,16 +17,25 @@
     </div>
 
     <div class="details">
-        <h1>{{user.username}}</h1>
+        <a href="{% url 'updateprofile' %}">Update Profile</a>
+        <h1 class="username">{{user.username}}</h1>
+        {% for profile in profiles %}
+        <img src="{{profile.ProfilePic.url}}" alt="" class="profile-img">
+        <div class="About">
+            <h3>About Me: </h3>
+            <p class="bio">{{profile.bio}}</p>
+        </div>
+        <div class="skills">
+            <h3>My Skills: </h3>
+            <p>{{profile.skills}}</p>
+        </div>
+        <div class="email">
+            <h3>Contact</h3>
+            <p class="email">{{profile.email}}</p>
+        </div>
+        {% endfor %}
     </div>
 
-    <!-- <div>
-        {% include 'base/feedcomponent.html' %}
-    </div>
-
-    <div>   
-        {% include 'base/activitysection.html' %}
-    </div> -->
 </div>
 
 {% endblock %}
