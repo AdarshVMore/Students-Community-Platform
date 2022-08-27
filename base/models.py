@@ -1,7 +1,32 @@
+from email.policy import default
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
+
+from django.contrib.auth import get_user_model
+import uuid
+from datetime import datetime
+
+
 # Create your models here.
+
+class UpdateProfile(models.Model):
+    skill = (
+        ("webdevelopment", "webdevelopment"),
+        ("DSA", "DSA"),
+        ("Android development", "Android development"),
+        ("Compitative programming", "Compitative programming"),
+        ("AWS", "AWS"),
+    )
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    ProfilePic = models.ImageField( default='default.jpg' , upload_to='profile_images', null=True)
+    username = models.CharField(max_length=200)
+    bio = models.TextField(max_length=1000)
+    skills = models.CharField(choices=skill, max_length=50)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.user
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)
@@ -39,3 +64,27 @@ class Message(models.Model):
     
     def __str__(self):
         return self.body[0:50]
+
+
+
+
+
+
+
+# social media app
+
+User = get_user_model()
+
+
+class Post(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    user = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='post_images')
+    subject = models.CharField(max_length=200)
+    link = models.URLField(blank=True) 
+    description = models.TextField()
+    created_at = models.DateTimeField(default=datetime.now)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user

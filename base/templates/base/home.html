@@ -97,8 +97,16 @@
 
     .home-container .recent-activity{
         display: flex;
+        flex-direction: column;
         justify-content: right;
     }
+    .main-container{
+        width: 70vw;
+        display: flex;
+    }
+
+
+
 
 
     
@@ -116,8 +124,9 @@
         <input type="text" name="q" placeholder="Search Rooms..." />
     </form>
     <div class="top-right-nav">
-        <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
         {% if request.user.is_authenticated %}
+        <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
+
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'login' %}">Login</a>
@@ -129,12 +138,12 @@
     <div class="browse_topics">
         <div class="app-section">
             <ul class="links">
-                <li><a href="">chat</a></li>
-                <li><a href="">learn</a></li>
-                <li><a href="">stalk</a></li>
-                <li><a href="">doubt</a></li>
-                <li><a href="">trade</a></li>
-                <li><a href="">work</a></li>
+                <li><a href="/">chat</a></li>
+                <li><a href="{% url 'learn' %}">learn</a></li>
+                <li><a href="/">stalk</a></li>
+                <li><a href="/">doubt</a></li>
+                <li><a href="/">trade</a></li>
+                <li><a href="/">work</a></li>
             </ul>
             <hr>
         </div>
@@ -155,15 +164,15 @@
 
     </div>
 
-    <div class="chat-section">
-        {%include 'base/room.html' %}
+    <div class="main-container">
+        <div class="chat-section">
+            {%include 'base/room.html' %}
+        </div>
+    
+        <div>
+            {%include 'base/learn.html' %}
+        </div>
     </div>
-
-
-    <div class="recent-activity">
-        {% include 'base/activitysection.html' %}
-    </div>
-
 
 </div>
 {%endblock%}

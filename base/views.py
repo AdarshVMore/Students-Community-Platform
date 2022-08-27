@@ -5,20 +5,22 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .forms import ModifiedForm
-from .forms import RoomForm
+from .forms import ModifiedForm, Profile
+from .forms import RoomForm, UpdateProfile
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+
+from .models import Room, Topic, Message, Post
+import random
+
 
 
 # Create your views here.
-from .models import Room, Topic, Message
 
 rooms = [
-    {'id': 1, 'name':'adarsh'},
-    {'id': 2, 'name':'bittu'},
-    {'id': 3, 'name':'yash'},
+    {'id': 1},
+    {'id': 2},
+    {'id': 3},
 ]
 
 def loginpage(request):
@@ -111,8 +113,15 @@ def userProfile(request, x):
     rooms = user.room_set.all()
     room_message = user.message_set.all()
     topics = Topic.objects.all()
-    context = {'user':user , 'rooms':rooms, 
-                'room_message':room_message,'topics':topics}
+    profiles = UpdateProfile.objects.all()
+    updateprofile = UpdateProfile()
+
+    if request.method == 'POST':
+        updateprofile = UpdateProfile(request.POST)
+        if updateprofile.is_valid():
+            updateprofile.save()
+            return redirect('profile')
+    context = {'user':user , 'rooms':rooms, 'room_message':room_message,'topics':topics,'updateprofile':updateprofile, 'profiles':profiles}
     return render(request, 'base/profile.html', context)
 
 @login_required(login_url='/login')
@@ -171,3 +180,54 @@ def deleteMessage(request, x):
     
 
     return render(request, 'base/deleteroom.html', {'obj':message})
+
+
+
+# Creating learn secction
+
+def learn(request):
+    posts = Post.objects.all()
+    data = request.POST
+
+    if request.method == 'POST':
+        image = request.FILES.get('image')
+        
+        thumbnail = Post.objects.create(
+            description=data['description'],
+            image=image,
+            subject=data['subject'],
+            link=data['link'],
+            user=request.user
+        )
+        new_context = {'thumbnail':thumbnail, 'image':image}
+        return render(request, 'base/home.html', new_context)
+
+    context = {'data':data,'posts':posts}
+    return render(request, 'base/home.html',context)
+
+@login_required(login_url='/login')
+def deletePost(request, x):
+    post = Post.objects.get(id = x)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('home')
+
+    return render(request, 'base/deletePost.html', {'obj':post})
+
+
+@login_required(login_url='/login')
+def profile(request):
+    profiles = Profile()
+
+    if request.method == 'POST':
+        # profile_img = request.FILES.get('ProfilePic')
+        profiles = Profile(request.POST, request.FILES)
+        if profiles.is_valid():
+            updateprofile = profiles.save()
+            updateprofile.username = request.user
+            # updateprofile.ProfilePic = profile_img
+            updateprofile.save()
+            return redirect('profile')
+    context = {'profiles':profiles}
+    return render(request, 'base/updateprofile.html', context)
+
