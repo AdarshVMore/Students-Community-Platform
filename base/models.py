@@ -1,3 +1,4 @@
+from email.policy import default
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
@@ -17,13 +18,15 @@ class UpdateProfile(models.Model):
         ("Compitative programming", "Compitative programming"),
         ("AWS", "AWS"),
     )
-
-    ProfilePic = models.ImageField()
-    name = models.CharField(max_length=200)
-    username = models.ForeignKey(User, on_delete=models.SET_NULL, null = True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    ProfilePic = models.ImageField( default='default.jpg' , upload_to='profile_images', null=True)
+    username = models.CharField(max_length=200)
     bio = models.TextField(max_length=1000)
     skills = models.CharField(choices=skill, max_length=50)
     email = models.EmailField()
+
+    def __str__(self):
+        return self.user
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)

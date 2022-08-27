@@ -1,4 +1,5 @@
 from dataclasses import fields
+from secrets import choice
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
@@ -8,10 +9,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 class ModifiedForm(UserCreationForm):
     email = forms.EmailField()
-    identity = forms.ImageField()
+    Year = forms.CharField(max_length=100)
+    Branch = forms.CharField(max_length=100)
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'identity']
+        fields = ['username', 'email', 'password1', 'password2', 'Year', 'Branch']
 
 class RoomForm(ModelForm):
     class Meta:
@@ -29,4 +31,3 @@ class Profile(ModelForm):
     class Meta:
         model = UpdateProfile
         fields = '__all__'
-        exclude = ['username']

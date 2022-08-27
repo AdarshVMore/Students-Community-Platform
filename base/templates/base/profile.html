@@ -15,15 +15,19 @@
     <div>
         {% include 'base/topicssection.html' %}
     </div>
-
     <div class="details">
         <a href="{% url 'updateprofile' %}">Update Profile</a>
         <h1 class="username">{{user.username}}</h1>
         {% for profile in profiles %}
+        {% if profile.user == request.user %}
         <img src="{{profile.ProfilePic.url}}" alt="" class="profile-img">
         <div class="About">
             <h3>About Me: </h3>
             <p class="bio">{{profile.bio}}</p>
+        </div>
+        <div class="name">
+            <h3>Name: </h3>
+            <p>{{profile.username}}</p>
         </div>
         <div class="skills">
             <h3>My Skills: </h3>
@@ -33,6 +37,7 @@
             <h3>Contact</h3>
             <p class="email">{{profile.email}}</p>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 

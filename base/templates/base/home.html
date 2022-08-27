@@ -124,8 +124,9 @@
         <input type="text" name="q" placeholder="Search Rooms..." />
     </form>
     <div class="top-right-nav">
-        <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
         {% if request.user.is_authenticated %}
+        <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
+
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'login' %}">Login</a>

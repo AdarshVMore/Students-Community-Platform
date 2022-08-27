@@ -215,19 +215,19 @@ def deletePost(request, x):
     return render(request, 'base/deletePost.html', {'obj':post})
 
 
-
+@login_required(login_url='/login')
 def profile(request):
     profiles = Profile()
 
     if request.method == 'POST':
-        profile_img = request.FILES.get('ProfilePic')
-        profiles = Profile(request.POST)
+        # profile_img = request.FILES.get('ProfilePic')
+        profiles = Profile(request.POST, request.FILES)
         if profiles.is_valid():
             updateprofile = profiles.save()
             updateprofile.username = request.user
-            updateprofile.ProfilePic = profile_img
+            # updateprofile.ProfilePic = profile_img
             updateprofile.save()
-            return redirect('profile') 
+            return redirect('profile')
     context = {'profiles':profiles}
     return render(request, 'base/updateprofile.html', context)
 
