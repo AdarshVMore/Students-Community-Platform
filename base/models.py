@@ -11,22 +11,16 @@ from datetime import datetime
 # Create your models here.
 
 class UpdateProfile(models.Model):
-    skill = (
-        ("webdevelopment", "webdevelopment"),
-        ("DSA", "DSA"),
-        ("Android development", "Android development"),
-        ("Compitative programming", "Compitative programming"),
-        ("AWS", "AWS"),
-    )
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     ProfilePic = models.ImageField( default='default.jpg' , upload_to='profile_images', null=True)
     username = models.CharField(max_length=200)
     bio = models.TextField(max_length=1000)
-    skills = models.CharField(choices=skill, max_length=50)
+    skills = models.CharField(max_length=50)
     email = models.EmailField()
 
     def __str__(self):
-        return self.user
+        return self.username
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)

@@ -20,7 +20,7 @@ urlpatterns = [
     path('deletemessage/<str:x>/', views.deleteMessage , name = 'deletemessage'),
 
     path('learn/', views.learn, name='learn'),
-    path('deletepost/<int:x>', views.deletePost , name = 'deletepost'),
+    path('learn/viewpost/<str:x>' , views.viewpost , name='viewpost',)
 
 
     

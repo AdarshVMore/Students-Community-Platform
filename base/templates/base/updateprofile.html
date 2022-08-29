@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{profiles.as_p}}
     <input type="submit" value="submit">
@@ -10,3 +10,32 @@
 
 
 {% endblock %}
+
+<!--
+<div class="upload">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="upload-img">
+            <label for="file"> Profile Pic:</label>
+            <input type="file" placeholder="all_profiles" name="ProfilePic"></input>
+        </div>
+        <div class="username">
+            <label for="name">name: </label>
+            <input type="text" name="name"></input>
+        </div>
+        <div class="skills">
+            <label for="skills">skills: </label>
+            <input type="text" name="skills"></input>
+        </div>
+        <div class="description">
+            <label for="bio">bio: </label>
+            <input type="text" name="bio" id="bio"></input>
+        </div>
+        <div class="email">
+            <label for="description">email: </label>
+            <input type="email" name="email" id="email"></input>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>

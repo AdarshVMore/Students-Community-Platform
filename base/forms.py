@@ -31,3 +31,4 @@ class Profile(ModelForm):
     class Meta:
         model = UpdateProfile
         fields = '__all__'
+        exclude = ['user']

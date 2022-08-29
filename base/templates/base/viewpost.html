@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% for post in view_post %}
+
+<div class="post">
+    <div class="heading">
+        <h2>{{post.subject}}</h2>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock%}

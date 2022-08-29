@@ -205,29 +205,28 @@ def learn(request):
     context = {'data':data,'posts':posts}
     return render(request, 'base/home.html',context)
 
-@login_required(login_url='/login')
-def deletePost(request, x):
-    post = Post.objects.get(id = x)
-    if request.method == 'POST':
-        post.delete()
-        return redirect('home')
+def viewpost(request, x):
+    view_post = Post.objects.get(id = x)
+    context = {'view_post':view_post}
+    return render(request, 'base/viewpost.html', context)
 
-    return render(request, 'base/deletePost.html', {'obj':post})
 
 
 @login_required(login_url='/login')
 def profile(request):
     profiles = Profile()
+    user = request.user
 
     if request.method == 'POST':
-        # profile_img = request.FILES.get('ProfilePic')
+        profile_img = request.FILES.get('ProfilePic')
         profiles = Profile(request.POST, request.FILES)
         if profiles.is_valid():
             updateprofile = profiles.save()
-            updateprofile.username = request.user
-            # updateprofile.ProfilePic = profile_img
+            updateprofile.ProfilePic = profile_img
             updateprofile.save()
             return redirect('profile')
-    context = {'profiles':profiles}
+    context = {'profiles':profiles, 'user':user}
     return render(request, 'base/updateprofile.html', context)
+
+
 
