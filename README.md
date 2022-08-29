@@ -27,4 +27,4 @@ Backend is almost done - Working on frontend with React and Tailwindcss
 
 
 
-WEBSITE IS UNDER STILL CONSTRUCTION .....🏗️
+WEBSITE IS STILL UNDER CONSTRUCTION .....🏗️
