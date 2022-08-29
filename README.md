@@ -1,5 +1,7 @@
 # Students-Community-Platform
 
+#DISCORD + EDX + QUORA + LINKEDIN + UPWORK + OLX = Students community platform
+
 This is a platform where students of every college can connect , 
                                                        talk , 
                                                        teach each other , 
@@ -18,18 +20,3 @@ This single platfrom includes
 [Design.pdf](https://github.com/AdarshVMore/Students-Community-Platform/files/9447004/Design.pdf)
 
 design : https://www.figma.com/file/u2iStDtnF5G2ZMkepgc1Kn/Untitled?node-id=0%3A1
-
-1. Chat section : it basically works and looks like DISCORD with functions like create classroom on specific topic, 
-                  Chat in every classroom, delete it edit it specific restrict students and many more....
-                  
-2. Learn Section : Here seniors or club people can upload anything they want like any SOCIAL MEDIA platform 
-                   can have any Post regarding college fest 
-                   Any senior from IIT Bombay good at Web dev can post that he is going to teach it , which because of this                        platform can be joined by any tier 3 college student
-                   Show how Good their Club is and opportunities could be given to any tier college student which he 
-                   wont usually get.
-                   
-3. Doubt Section : Here Juniors can actually ask any doubt with a # jst like Quora or Stack Overflow where senior can answer                      those
-
-4.Stalk Section: Here this section works like Linkden of students Where 1 student can stalk and see other students journey                    and achivments
-
-5. Work Section:
