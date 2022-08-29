@@ -1,5 +1,7 @@
 # Students-Community-Platform
 
+No distraction and 100% Productivity for College Students
+
 #DISCORD + EDX + QUORA + LINKEDIN + UPWORK + OLX = Students community platform
 
 This is a platform where students of every college can connect , 
