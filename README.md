@@ -11,6 +11,7 @@ This single platfrom includes
 - Chat Section
 - Learn Section
 - Doubt Section
+- Stalk Section
 - Work Section
 - Trade Section
 
