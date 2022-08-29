@@ -15,6 +15,9 @@ This single platfrom includes
 - Work Section
 - Trade Section
 
+[Design.pdf](https://github.com/AdarshVMore/Students-Community-Platform/files/9447004/Design.pdf)
+
+design : https://www.figma.com/file/u2iStDtnF5G2ZMkepgc1Kn/Untitled?node-id=0%3A1
 
 1. Chat section : it basically works and looks like DISCORD with functions like create classroom on specific topic, 
                   Chat in every classroom, delete it edit it specific restrict students and many more....
