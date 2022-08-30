@@ -24,7 +24,7 @@ This single platfrom includes
 
 design : https://www.figma.com/file/u2iStDtnF5G2ZMkepgc1Kn/Untitled?node-id=0%3A1
 
-Backend is almost done - Working on frontend with React and Tailwindcss
+Backend for 2 sections is almost done - Working on frontend with React and Tailwindcss
 
 
 
