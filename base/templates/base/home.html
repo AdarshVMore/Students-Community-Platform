@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap" rel="stylesheet">
 
 <style>
+    ::-webkit-scrollbar{
+        width: .1em;
+    }
     :root{
     --top-nav-bgc: #3A3852;
     --left-most-bgc: #242731;
@@ -18,6 +21,7 @@
         padding: 0;
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
+
     }
     .all{
         background-color: var(--top-nav-bgc);
@@ -103,10 +107,10 @@
         top: 95px;
         min-height: 100%;
         z-index: 5;
+        width: 80px;
     }
     .browse_topics ul li a{
         list-style: none;
-        padding-left: 4px;
     }
 
     .create-room{
@@ -124,6 +128,13 @@
         display: flex;
         padding-right: 5vw;
     }
+    .filter{
+        display: flex;
+        justify-content: space-between;
+    }
+    .filter p{
+        margin-right: 10px;
+    }
     .home-container .recent-activity{
         display: flex;
         flex-direction: column;
@@ -135,8 +146,7 @@
         background-color: var(--top-nav-bgc);
         position: fixed;
         top: 95px;
-        left: 375px;
-        overflow-y: auto;
+        left: 295px;
 
     }
     a{
@@ -145,10 +155,8 @@
     .create-room{
         max-height: 100%;
         position: fixed;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        overflow: hidden;
-        left: 150px;
+
+        left: 80px;
         top: 95px;
     }
     .top{
@@ -184,7 +192,13 @@
         font-size: 15px;
     }
 
-
+    .all-topics{
+        overflow: hidden;
+    }
+    #rooms{
+        overflow: hidden;
+        overflow-y: scroll;
+    }
     #chat-btn{
         margin-top: 0;
     }
@@ -226,9 +240,10 @@
                     <li id="trade-btn"><a href="/">trade</a></li>
                     <li id="work-btn"><a href="/">work</a></li>
                 </ul>
-                <hr>
+                <div class="all-topics">
+                    {% include 'base/topicssection.html' %}
+                </div>
             </div>
-            {% include 'base/topicssection.html' %}
         </div>
     
     
@@ -239,7 +254,12 @@
                     <form method="GET" action="{% url 'home' %}">
                         <input type="text" name="q" placeholder="Search Rooms..." />
                     </form>
-                    <h5>{{room_count}} rooms available</h5>
+                    <div class="filter">
+                        <h5>{{room_count}} rooms available</h5>
+                        <p>filter</p>
+                        <!-- {% include 'base/topicssection.html' %} -->
+                    </div>
+
                 </div>
         
         

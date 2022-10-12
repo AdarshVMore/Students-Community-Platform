@@ -1,21 +1,25 @@
 {% extends 'main.html' %} {%block content%}
 
 <style>
+
   .room-container {
     display: flex;
+    position: fixed;
+    height: 700px;
+    width: 1075px;
+    background-color: var(--top-nav-bgc);
   }
   .classroom-heading{
-    width: 1160px;
-    padding: 20px 40px;
+    width: 1070px;
+    padding: 10px 40px;
     color: white;
     box-shadow: 0px 0px 7px black; 
-    max-height: 100px;
+    height: 100px;
     font-family: 'Poppins', sans-serif;
-
   }
   .classroom-heading h3{
     font-weight: bolder;
-    font-size: 20ox;
+    font-size: 20px;
   }
   .classroom-heading p{
     font-size: 12px;
@@ -25,9 +29,10 @@
   .comment-form{
     position: fixed;
     bottom: 25px;
-    left: 400px;
+    left: 320px;
 
   }
+
   .comment-form input{
     height: 30px;
     border-radius: 10000px;
@@ -37,6 +42,12 @@
   }
   .comment-wrapper{
     margin: 20px 40px;
+    height: 10px
+  }
+  .talk{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 600px;
   }
   .msg-owner{
     display: flex;
@@ -57,10 +68,14 @@
   .msg-owner a{
     font-size: 12px;
   }
+  .msg-body{
+    color: white;
+    font-style: bold;
+  }
   .participants{
-    position: absolute;
-    right: 180px;
-    top: 100px;
+    position: fixed;
+    right: 0;
+    height: 700px;
     background-color: var(--create-room-bgc);
     color: white;
     padding: 20px;
@@ -87,8 +102,7 @@
 
     <div class="comment-wrapper">
       <div>
-
-      {% for message in allmessages%}
+        {% for message in allmessages%}
         
         <div class="msg-owner">
           <small><small class="username">@{{message.user}}        </small>           <small class="time">      {{message.created|timesince}} ago</small></small>
@@ -98,9 +112,10 @@
           {% endif %}
 
         </div>
-        <p>{{message.body}}</p>
+        <p class="msg-body">{{message.body}}</p>
         <hr />
       {% endfor %}
+      </div>
     </div>
 
     </div>
@@ -122,7 +137,7 @@
     </div>
     {% endfor %}
   </div>
-  <div class="recent-act">
+  <!-- <div class="recent-act">
     <div>
       <h3>Recent Activity</h3>
       <hr />
@@ -143,7 +158,7 @@
       {% endfor %}
 
     </div>
-  </div>
+  </div> -->
 
 
 

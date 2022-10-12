@@ -10,22 +10,20 @@
 </style>
 
 <div class="topic-section">
-  <h3>Browse topics</h3>
-  <hr />
+
 
   <div class="topics">
     <div>
-      <h3>
+      <p>
         <a href="{% url 'home' %}">All</a>
-      </h3>
+      </p>
     </div>
     <div>
       {% for topic in topics %}
-      <h3>
+      <p>
         <a href="{% url 'home' %}?q={{topic}}">{{topic}}</a>
-      </h3>
+      </p>
       {% endfor %}
-      <hr />
     </div>
 
   </div>
