@@ -1,8 +1,76 @@
 {% extends 'main.html' %}
+{% block content%}
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+    background-size: cover;
+    background-color: #3a3852;
+      
+}
+
+.romcreate{
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%,-50%);
+    width: 450px;
+    background: rgba(0,0,0,.8);
+    padding:40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.8);
+    border-radius: 10px;
+    
+ 
+}
+input[type="submit"]
+{
+    background: transparent;
+    border: none;
+    color: #fff;
+    background: #03a9f4;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+}
+form label,select{
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #03a9f4;
+}
+.romcreate h2{
+    color: #fff;
+}
+form input,select{
+    width: 100%;
+    padding:10px 0;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    
+}
+.romcreate form select option
+{
+    color:black;
+}
+form textarea{
+    width: 100%;
+    color: white;
+    background-color: #3a3852;
+}
+
+</style>
 
 <body>
-    {% block content%}
-    <div>
+    
+    <div class="romcreate"> 
+        <h2 class="headtag">Create Room</h2>
         <form method="POST" action="">
             {% csrf_token %}
             {{form.as_p}}

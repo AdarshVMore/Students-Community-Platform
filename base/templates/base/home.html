@@ -20,7 +20,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
 
     }
     .all{
@@ -199,6 +198,9 @@
         overflow: hidden;
         overflow-y: scroll;
     }
+    .create-room{
+        height: 700px;
+    }
     #chat-btn{
         margin-top: 0;
     }
@@ -254,11 +256,11 @@
                     <form method="GET" action="{% url 'home' %}">
                         <input type="text" name="q" placeholder="Search Rooms..." />
                     </form>
-                    <div class="filter">
+                    <!-- <div class="filter"> -->
                         <h5>{{room_count}} rooms available</h5>
-                        <p>filter</p>
+                        <!-- <p>filter</p> -->
                         <!-- {% include 'base/topicssection.html' %} -->
-                    </div>
+                    <!-- </div> -->
 
                 </div>
         
@@ -272,10 +274,11 @@
         <div class="main-container">
             <div class="chat-section">
                 {%include 'base/room.html' %}
+                <!-- {%include 'base/learn.html' %} -->
+
             </div>
         
             <div class="learn-section">
-                {%include 'base/learn.html' %}
             </div>
         </div>
     
