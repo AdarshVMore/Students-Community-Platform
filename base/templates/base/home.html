@@ -1,39 +1,51 @@
 {%extends 'main.html'%}
 
+{% load static%}
 
 {%block content%}
-
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap" rel="stylesheet">
 
 <style>
     :root{
-    --top-nav-bgc: #00e1ff;
-    --left-most-bgc: #18e4ff;
-    --create-room-bgc: #33e7ff;
+    --top-nav-bgc: #3A3852;
+    --left-most-bgc: #242731;
+    --create-room-bgc: #2A2C3E;
     }
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    .all{
+        background-color: var(--top-nav-bgc);
+    }
+    a{
+        text-decoration: none;
     }
     hr{
         opacity: 50%;
-        
-        
     }
-
     .logo h3 {
         background-color: var(--top-nav-bgc);
-
+        color: white;
+        font-size: 35px;
+        padding-left: 50px;
     }
 
     .top-nav {
         display: flex;
         align-items: center;
-        width: 100vw;
+        max-width: 100vw;
         box-shadow: 0px 0px 7px black;
         height: 12vh;
         background-color: var(--top-nav-bgc);
+        z-index: 5;
+        position: fixed;
+        font-family: 'Poppins', sans-serif;
+
     }
 
     .top-right-nav {
@@ -64,15 +76,35 @@
     .home-container {
         display: flex;
         height: 88vh;
-        width: 100vw;
+        max-width: 100vw;
         justify-content: flex-start;
     }
+    .app-section ul{
+        color: #3A3852;
 
+    }
+    .app-section ul li{
+        text-align: center;
+        margin: 5px 0;
+        background-color: var(--top-nav-bgc);
+        padding-left: 4px;
+
+    }
+    .app-section ul li a{
+        color: var(--left-most-bgc);
+        background-color: var(--top-nav-bgc);
+        padding: 0;
+        font-weight: bolder;
+    }
     .browse_topics {
         background-color: var(--left-most-bgc);
+        position: fixed;
+        left: 0;
+        top: 95px;
+        min-height: 100%;
+        z-index: 5;
     }
-    .browse_topics ul li a, .app-section ul li{
-        background-color: var(--left-most-bgc);
+    .browse_topics ul li a{
         list-style: none;
         padding-left: 4px;
     }
@@ -82,99 +114,168 @@
         flex-direction: column;
         background-color: var(--create-room-bgc);
         width: 225px;
+        z-index: 1;
     }
-    .create-room .top , .create-room .top a, .create-room .top h5{
+    .create-room .top , .create-room .top h5{
         background-color: var(--create-room-bgc);
         padding-left: 4px;
     }
-
-
     .chat-section{
         display: flex;
         padding-right: 5vw;
     }
-
-
     .home-container .recent-activity{
         display: flex;
         flex-direction: column;
         justify-content: right;
     }
     .main-container{
-        width: 70vw;
+        min-width: 76vw;
         display: flex;
+        background-color: var(--top-nav-bgc);
+        position: fixed;
+        top: 95px;
+        left: 375px;
+        overflow-y: auto;
+
+    }
+    a{
+        color: white;
+    }
+    .create-room{
+        max-height: 100%;
+        position: fixed;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        overflow: hidden;
+        left: 150px;
+        top: 95px;
+    }
+    .top{
+        text-align: center;
+        background-color: var(--left-most-bgc);
+        margin: 20px 0 0 0;
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+    }
+    .top a{
+        background-color: var(--left-most-bgc);
+        padding: 8px 20px;
+        margin: -10px 8px 0 8px;
+        text-align: center;
+        border-radius: 10000px;
+        font-size: 15px;
+    }
+    .top input{
+        max-width: 200px;
+        height: 35px;
+        border-radius: 100000px;
+        border: 0;
+        background-color: var(--left-most-bgc);
+        opacity: 50%;        
+        text-align: center;
+        font-size: 12;
+    }
+    .top h5{
+        color: var(--left-most-bgc);
+        font-size: 15px;
     }
 
 
-
-
-
-    
+    #chat-btn{
+        margin-top: 0;
+    }
+    .learn-section{
+        display: none;
+        visibility: hidden;
+    }
 </style>
 
 
 
 
 
-<div class="top-nav">
-    <div class="logo">
-        <h3>StudentsCommunityPlatform</h3>
-    </div>
-    <form method="GET" action="{% url 'home' %}">
-        <input type="text" name="q" placeholder="Search Rooms..." />
-    </form>
-    <div class="top-right-nav">
-        {% if request.user.is_authenticated %}
-        <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
-
-        <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        {%endif%}
-    </div>
-</div>
-<div class="home-container">
+<div class="all">
+    <div class="top-nav">
+        <div class="logo">
+            <h3>StudentsCommunityPlatform</h3>
+        </div>
+        
+        <div class="top-right-nav">
+            {% if request.user.is_authenticated %}
+            <h3> <a href="{% url 'profile' user.id%}">{{request.user}}</a> </h3>
     
-    <div class="browse_topics">
-        <div class="app-section">
-            <ul class="links">
-                <li><a href="/">chat</a></li>
-                <li><a href="{% url 'learn' %}">learn</a></li>
-                <li><a href="/">stalk</a></li>
-                <li><a href="/">doubt</a></li>
-                <li><a href="/">trade</a></li>
-                <li><a href="/">work</a></li>
-            </ul>
-            <hr>
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {%endif%}
         </div>
-        {% include 'base/topicssection.html' %}
     </div>
-
-
-    <div class="create-room">
-        <div class="top">
-            <a href="{% url 'addroom' %}">create room</a>
-            <h5>{{room_count}} rooms available</h5>
-        </div>
-
-
-        <div class="all-rooms">
-            {% include 'base/feedcomponent.html'%}
-        </div>
-
-    </div>
-
-    <div class="main-container">
-        <div class="chat-section">
-            {%include 'base/room.html' %}
+    <div class="home-container">
+        
+        <div class="browse_topics">
+            <div class="app-section">
+                <ul class="links">
+                    <li id="chat-btn"><a href="/">chat</a></li>
+                    <li id="learn-btn"><a href="{% url 'learn' %}">learn</a></li>
+                    <li id="stalk-btn"><a href="/">stalk</a></li>
+                    <li id="doubt-btn"><a href="/">doubt</a></li>
+                    <li id="trade-btn"><a href="/">trade</a></li>
+                    <li id="work-btn"><a href="/">work</a></li>
+                </ul>
+                <hr>
+            </div>
+            {% include 'base/topicssection.html' %}
         </div>
     
-        <div>
-            {%include 'base/learn.html' %}
+    
+        <div class="create-room">
+            <div id="rooms">
+                <div class="top">
+                    <a href="{% url 'addroom' %}">Create Classroom</a>
+                    <form method="GET" action="{% url 'home' %}">
+                        <input type="text" name="q" placeholder="Search Rooms..." />
+                    </form>
+                    <h5>{{room_count}} rooms available</h5>
+                </div>
+        
+        
+                <div class="all-rooms">
+                    {% include 'base/feedcomponent.html'%}
+                </div>
+            </div>
         </div>
+    
+        <div class="main-container">
+            <div class="chat-section">
+                {%include 'base/room.html' %}
+            </div>
+        
+            <div class="learn-section">
+                {%include 'base/learn.html' %}
+            </div>
+        </div>
+    
     </div>
-
 </div>
+
+<script>
+
+    learn_section = document.getElementsByClassName('learn-section')
+    console.log("script");
+    chat_sect = () => {
+        learn_section.style.dislay = "none"
+        console.log("none")
+    }
+    learn_sect =() => {
+        learn_section.style.dislay = "block"
+        console.log("block")
+    }
+
+</script>
 {%endblock%}
 
 </body>

@@ -4,29 +4,105 @@
   .room-container {
     display: flex;
   }
+  .classroom-heading{
+    width: 1160px;
+    padding: 20px 40px;
+    color: white;
+    box-shadow: 0px 0px 7px black; 
+    max-height: 100px;
+    font-family: 'Poppins', sans-serif;
+
+  }
+  .classroom-heading h3{
+    font-weight: bolder;
+    font-size: 20ox;
+  }
+  .classroom-heading p{
+    font-size: 12px;
+    font-weight: 100;
+    opacity: 50%;
+  }
+  .comment-form{
+    position: fixed;
+    bottom: 25px;
+    left: 400px;
+
+  }
+  .comment-form input{
+    height: 30px;
+    border-radius: 10000px;
+    border: 0;
+    width: 65vw;
+    padding: 0 20px;
+  }
+  .comment-wrapper{
+    margin: 20px 40px;
+  }
+  .msg-owner{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 5px 0px;
+  }
+  .msg-owner .username{
+    font-size: 15px;
+    color: rgb(151, 151, 255);
+  }
+  .msg-owner .time{
+    opacity: 50%;
+    font-size: 8px;
+  }
+  .msg-owner p{
+    font-size: 12px;
+  }
+  .msg-owner a{
+    font-size: 12px;
+  }
+  .participants{
+    position: absolute;
+    right: 180px;
+    top: 100px;
+    background-color: var(--create-room-bgc);
+    color: white;
+    padding: 20px;
+  }
+  .participants h3{
+    margin-bottom: 10px;
+  }.participants p{
+    margin: 10px 5px;
+    color: rgb(151, 151, 255);
+  }
+  hr{
+    opacity: 5%;
+    margin: 10px 0;
+  }
 </style>
 
 <div class="room-container">
-  <div>
-    <h3>{{room.name}}</h3>
+  <div  class="talk">
+    <div class="classroom-heading">
+      <h3>{{room.name}}</h3>
 
-    <p>{{room.description}}</p>
-
+      <p>{{room.description}}</p>
+    </div>
 
     <div class="comment-wrapper">
-      <h3>conversation</h3>
-      <hr />
+      <div>
 
       {% for message in allmessages%}
-      <div>
-        {% if request.user == message.user%}
-        <a href="{% url 'deletemessage' message.id %}">Delete</a>
-        {% endif %}
-        <small>@{{message.user}} {{message.created|timesince}} ago</small>
+        
+        <div class="msg-owner">
+          <small><small class="username">@{{message.user}}        </small>           <small class="time">      {{message.created|timesince}} ago</small></small>
+
+          {% if request.user == message.user%}
+          <a href="{% url 'deletemessage' message.id %}">Delete</a>
+          {% endif %}
+
+        </div>
         <p>{{message.body}}</p>
         <hr />
-      </div>
       {% endfor %}
+    </div>
+
     </div>
     {% if request.user.is_authenticated %}
     <div class="comment-form">
@@ -37,8 +113,8 @@
     </div>
     {% endif %}
   </div>
-  <div>
-    <h3>participants</h3>
+  <div class="participants">
+    <h3>Participants</h3>
 
     {% for user in participants %}
     <div>
@@ -46,7 +122,7 @@
     </div>
     {% endfor %}
   </div>
-  <div>
+  <div class="recent-act">
     <div>
       <h3>Recent Activity</h3>
       <hr />

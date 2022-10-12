@@ -1,3 +1,9 @@
+<style>
+    .uploads{
+        display: flex;
+    }
+</style>
+
 
 {% if user.is_authenticated%}
 <div class="upload">
@@ -26,27 +32,28 @@
 {% endif%}
 
 {% for post in posts %}
-    <div class="uploaded-imgs">
-        <div class="upload-top">
-            <a href="{%url 'profile' user.id%}"><h3>@{{post.user}}</h3></a>
-            <p>{{post.updated | timesince}}</p>
-    
-            <!-- {% if request.user == post.user %} -->
-            <!-- {% endif %} -->
-        </div>
-
-
-        <a href="{% url 'viewpost' viewpost.id %">
-            <div class="thumbnail-div">
-                <img src="{{post.image.url}}" alt="" class="thumbnail">
+    <div class="uploads">
+        <div class="uploaded-imgs">
+            <div class="upload-top">
+                <a href="{%url 'profile' user.id%}"><h3>@{{post.user}}</h3></a>
+                <p>{{post.updated | timesince}}</p>
+        
+                <!-- {% if request.user == post.user %} -->
+                <!-- {% endif %} -->
             </div>
-            <h3>{{post.subject}}</h3>
-            <a href="{{post.link}}" target="_blank">{{post.link}}</a>
-            <p>{{post.description}}</p>
-        </a>
-
     
-        <hr>
-        <br>
+    
+            <a href="{% url 'viewpost' viewpost.id %">
+                <div class="thumbnail-div">
+                    <img src="{{post.image.url}}" alt="" class="thumbnail">
+                </div>
+                <h3>{{post.subject}}</h3>
+                <a href="{{post.link}}" target="_blank">{{post.link}}</a>
+                <p>{{post.description}}</p>
+            </a>
+    
+        
+            <hr>
+        </div>
     </div>
 {% endfor %}
