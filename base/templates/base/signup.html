@@ -3,118 +3,119 @@
 
 {% block content %}
 {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li></li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+<ul class="messages">
+    {% for message in messages %}
+    <li></li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 
 {% if page == 'login' %}
 <style>
-
-
-
-
-
-    body{
-    margin: 0;
-    padding: 0;
-    font-family:sans-serif;
-    background-size: cover;
-    background-color: #3a3852;
-      
-}
-.box{
-    position: absolute;
-    top: 50%;
-    left: 50%; 
-    transform: translate(-50%,-50%);
-    width: 400px;
-    background: rgba(0,0,0,.8);
-    padding:40px;
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.8);
-    border-radius: 10px;
     
 
-}
 
-.box h2{
-    margin: 0 0 30px;
-    padding:0;
-    color: #fff;
-    text-align: center;
-}
- 
-.box .inputBox{
-    position: relative;
-}
 
-.box .inputBox input{
-    width: 100%;
-    padding:10px 0;
-    font-size: 16px;
-    color: #fff;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-}
 
-.box .inputBox label{
-   position: absolute; 
-   top: 0;
-   left: 0;
-   padding:10px 0;
-   letter-spacing: 1px;
-   font-size: 16px;
-   color: #fff;
-   pointer-events: none;
-   transition: 0.3s;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-size: cover;
+        background-color: #3a3852;
 
-.box .inputBox input:focus ~ label,
-.box .inputBox input:valid ~ label
-{
-    top: -18px;
-    left: 0;
-    color: #03a9f4;
-    font-size: 12px;
-}
+    }
 
-.box input[type="submit"]
-{
-    background: transparent;
-    border: none;
-    color: #fff;
-    background: #03a9f4;
-    padding:10px 20px;
-    cursor:pointer;
-    border-radius:5px;
-}
-.register a,p{
-    left: 0;
-    color: #03a9f4;
-    font-size: 16px; 
-}
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        background: rgba(0, 0, 0, .8);
+        padding: 40px;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .8);
+        border-radius: 10px;
+
+
+    }
+
+    .box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    .box .inputBox {
+        position: relative;
+    }
+
+    .box .inputBox input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+    }
+
+    .box .inputBox label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        letter-spacing: 1px;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: 0.3s;
+    }
+
+    .box .inputBox input:focus~label,
+    .box .inputBox input:valid~label {
+        top: -18px;
+        left: 0;
+        color: #03a9f4;
+        font-size: 12px;
+    }
+
+    .box input[type="submit"] {
+        background: transparent;
+        border: none;
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .register a,
+    p {
+        left: 0;
+        color: #03a9f4;
+        font-size: 16px;
+    }
 </style>
 <div class="box">
     <h2>Login</h2>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="inputBox">
-        <input type="text" name="username" required="">
-        <label>Username</label>
+            <input type="text" name="username" required="">
+            <label>Username</label>
         </div>
-        
-       <div class="inputBox">
-        <label>Password</label>
-        <input type="password" name="password">
-       </div>
+
+        <div class="inputBox">
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
         <input type="submit" value="Login">
     </form>
     <div class="register">
@@ -127,52 +128,116 @@
 
 {% else %}
 <style>
-.regester{
-background-color: #3a3852;
-position: absolute;
-    top: 50%;
-    left: 50%; 
-    transform: translate(-50%,-50%);
-    width:800px;
-    background: rgba(0,0,0,.8);
-    padding:40px;
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.8);
-    border-radius: 10px;
-}
-.regester form label{
-    font-family: sans-serif;
-    font-size: 18px;
-    color: #03a9f4;
-    
-}
+    ::-webkit-scrollbar {
+        width: 0.1em;
+    }
+    .regester {
+        background-color: #3a3852;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        background: rgba(0, 0, 0, .8);
+        padding: 40px;
+        height: 600px;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .8);
+        border-radius: 10px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+  
+    .regester form label {
+        font-family: sans-serif;
+        font-size: 18px;
+        color: #03a9f4;
+        width: 100%;
+
+    }
+
+    .regester form span {
+        position: absolute;
+        visibility: hidden;
+    }
 
 
-.errorlist{
-  list-style-type: none;
-  opacity: 0.5;  
-}
-.regester form input[type="submit"]
-{
-    background: transparent;
-    border: none;
-    color: #fff;
-    background: #03a9f4;
-    padding:10px 20px;
-    cursor:pointer;
-    border-radius:5px;
-}
+    .errorlist {
+        list-style-type: none;
+        opacity: 0.5;
+        visibility: hidden;
+    }
 
+    .regester form input[type="submit"] {
+        background: transparent;
+        border: none;
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 
+    .regester form input[type="text"] {
+        width: 100%;
+        padding: 5pxpx 0;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+    }
+
+    .regester form input[type="password"] {
+        width: 100%;
+        padding: 5pxpx 0;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+    }
+
+    .regester form input[type="email"] {
+        width: 100%;
+        padding: 5pxpx 0;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+    }
+
+    .regester form span ul {
+        visibility: hidden;
+    }
+
+    .regester h2 {
+        color: white;
+        text-align: center;
+        font-size: 30px;
+    }
 </style>
 <div class="regester">
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Register">
-    </form>
-    <p>have already registered ?</p>
-    <a href="{% url 'login' %}">login</a>
+    <div class="reg">
+        <h2>Register</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Register">
+        </form>
+        <p>have already registered ?</p>
+        <a href="{% url 'login' %}">login</a>
+    </div>
 </div>
 
 
