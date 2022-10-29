@@ -23,6 +23,9 @@ This single platfrom includes
 [Design.pdf](https://github.com/AdarshVMore/Students-Community-Platform/files/9447004/Design.pdf)
 
 design : https://www.figma.com/file/u2iStDtnF5G2ZMkepgc1Kn/Untitled?node-id=0%3A1
+![image](https://user-images.githubusercontent.com/103880462/198850018-109fac95-ba58-4a77-b34c-56d110f51222.png)
+![image](https://user-images.githubusercontent.com/103880462/198850037-b8e57302-25ca-4d12-a4ba-607776232aaf.png)
+
 
 Backend for 2 sections is almost done - Working on frontend with React and Tailwindcss
 
