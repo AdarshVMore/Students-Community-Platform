@@ -112,6 +112,7 @@
         list-style: none;
     }
 
+
     .create-room{
         display: flex;
         flex-direction: column;
@@ -182,9 +183,11 @@
         border-radius: 100000px;
         border: 0;
         background-color: var(--left-most-bgc);
-        opacity: 50%;        
+        opacity: 80%;        
         text-align: center;
         font-size: 12;
+        outline: none;
+        color: white;
     }
     .top h5{
         color: var(--left-most-bgc);
@@ -204,10 +207,10 @@
     #chat-btn{
         margin-top: 0;
     }
-    .learn-section{
+    /* .learn-section{
         display: none;
         visibility: hidden;
-    }
+    } */
 </style>
 
 
@@ -243,7 +246,7 @@
                     <li id="work-btn"><a href="/">work</a></li>
                 </ul>
                 <div class="all-topics">
-                    {% include 'base/topicssection.html' %}
+                    <!-- {% include 'base/topicssection.html' %} -->
                 </div>
             </div>
         </div>
@@ -254,7 +257,7 @@
                 <div class="top">
                     <a href="{% url 'addroom' %}">Create Classroom</a>
                     <form method="GET" action="{% url 'home' %}">
-                        <input type="text" name="q" placeholder="Search Rooms..." />
+                        <input type="text" name="q" placeholder="Search Rooms..." class="search-room"/>
                     </form>
                     <!-- <div class="filter"> -->
                         <h5>{{room_count}} rooms available</h5>
@@ -274,11 +277,12 @@
         <div class="main-container">
             <div class="chat-section">
                 {%include 'base/room.html' %}
-                <!-- {%include 'base/learn.html' %} -->
 
             </div>
         
             <div class="learn-section">
+                <!-- {%include 'base/learn.html' %} -->
+
             </div>
         </div>
     

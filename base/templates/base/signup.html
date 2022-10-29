@@ -2,19 +2,22 @@
 
 
 {% block content %}
-{% if messages %}
+<!-- {% if messages %}
 <ul class="messages">
     {% for message in messages %}
     <li></li>{{ message }}</li>
     {% endfor %}
 </ul>
-{% endif %}
+{% endif %} -->
 
 
 {% if page == 'login' %}
 <style>
-    
-
+    :root{
+    --top-nav-bgc: #3A3852;
+    --left-most-bgc: #242731;
+    --create-room-bgc: #2A2C3E;
+    }
 
 
 
@@ -24,6 +27,7 @@
         font-family: sans-serif;
         background-size: cover;
         background-color: #3a3852;
+        font-family: 'Poppins', sans-serif;
 
     }
 
@@ -33,94 +37,111 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400px;
-        background: rgba(0, 0, 0, .8);
-        padding: 40px;
+        background: #2A2C3E;
+        padding: 20px;
         box-sizing: border-box;
-        box-shadow: 0 15px 25px rgba(0, 0, 0, .8);
-        border-radius: 10px;
 
 
     }
+    .box form hr{
+        background-color: #00C2FF;
+        width: 100px;
+        align-items: flex-start;
+        position: relative;
+        top: -7px;
+        left: -110px;
+    }
 
     .box h2 {
-        margin: 0 0 30px;
+        margin: 0px 0 50px 0;
         padding: 0;
-        color: #fff;
+        color: #00C2FF;
         text-align: center;
+        font-size: 40px;
     }
 
     .box .inputBox {
         position: relative;
+        width: 325px;
     }
 
     .box .inputBox input {
-        width: 100%;
-        padding: 10px 0;
+        width: 87%;
+        padding: 10px 20px;
         font-size: 16px;
         color: #fff;
         letter-spacing: 1px;
         margin-bottom: 30px;
         border: none;
         outline: none;
-        border-bottom: 1px solid #fff;
+        border: 2px solid #00C2FF;
         background: transparent;
+        border-radius: 1000px;
+        margin-top: 6px;
     }
 
-    .box .inputBox label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        letter-spacing: 1px;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: 0.3s;
+    .box form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .box .inputBox input:focus~label,
-    .box .inputBox input:valid~label {
-        top: -18px;
-        left: 0;
-        color: #03a9f4;
-        font-size: 12px;
-    }
 
     .box input[type="submit"] {
         background: transparent;
         border: none;
-        color: #fff;
+        color: #2A2C3E;
         background: #03a9f4;
-        padding: 10px 20px;
+        padding: 6px 35px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 1000px;
+        font-weight: 800;
+        align-items: center;
     }
 
-    .register a,
-    p {
-        left: 0;
-        color: #03a9f4;
-        font-size: 16px;
+    label{
+        color:white;
+        font-style: bold;   
     }
+
+    .register{
+        display: flex;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .register a{
+        color: #00C2FF;
+        margin-left: 15px;
+    }
+    .register p{
+        font-size: xx-small;
+        color: white;
+    }
+
 </style>
 <div class="box">
-    <h2>Login</h2>
+    <h2 class="login-tag">LOGIN</h2>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="inputBox">
-            <input type="text" name="username" required="">
             <label>Username</label>
+            <hr>
+            <input type="text" name="username" required="">
+
         </div>
 
         <div class="inputBox">
             <label>Password</label>
+            <hr>
             <input type="password" name="password">
         </div>
-        <input type="submit" value="Login">
+        <input type="submit" value="LOGIN">
     </form>
     <div class="register">
         <p>haven't registered yet ?</p>
-        <a href="{% url 'register' %}">register</a>
+        <a href="{% url 'register' %}">Register</a>
+        
+        
     </div>
 </div>
 
@@ -236,7 +257,7 @@
             <input type="submit" value="Register">
         </form>
         <p>have already registered ?</p>
-        <a href="{% url 'login' %}">login</a>
+        <a href="{% url 'login' %}">LOGIN</a>
     </div>
 </div>
 

@@ -1,7 +1,6 @@
 {% extends 'main.html' %} {%block content%}
 
 <style>
-
   .room-container {
     display: flex;
     position: fixed;
@@ -9,70 +8,90 @@
     width: 1100px;
     background-color: var(--top-nav-bgc);
   }
-  .classroom-heading{
+
+  .classroom-heading {
     width: 1100px;
     padding: 10px 40px;
     color: white;
-    box-shadow: 0px 0px 7px black; 
-    height: 75px;
+    box-shadow: 0px 0px 7px black;
+    height: 85px;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
   }
-  .classroom-heading h3{
+
+  .classroom-heading h3 {
     font-weight: bolder;
     font-size: 20px;
   }
-  .classroom-heading p{
-    font-size: 12px;
-    font-weight: 100;
+
+  .classroom-heading p {
+    font-size: 10px;
     opacity: 50%;
   }
-  .comment-form{
+
+  .comment-form {
     position: fixed;
     bottom: 25px;
     left: 320px;
 
   }
 
-  .comment-form input{
+  .comment-form input {
     height: 30px;
     border-radius: 10000px;
     border: 0;
-    width: 65vw;
+    width: 100%;
     padding: 0 20px;
+    outline-style: none;
+    width: 60vw;
+    margin-right: 50px;
   }
-  .comment-wrapper{
+
+  .comment-wrapper {
     margin: 20px 40px;
     height: 10px
+    
   }
-  .talk{
+
+  .talk {
     overflow: hidden;
     overflow-y: scroll;
     height: 600px;
   }
-  .msg-owner{
+
+  .msg-owner {
     display: flex;
     justify-content: space-between;
     padding: 10px 0 5px 0px;
   }
-  .msg-owner .username{
+
+  .msg-owner .username a{
     font-size: 15px;
     color: rgb(151, 151, 255);
   }
-  .msg-owner .time{
+
+  .msg-owner .time {
     opacity: 50%;
     font-size: 8px;
   }
-  .msg-owner p{
+
+  .msg-owner p {
     font-size: 12px;
   }
-  .msg-owner a{
+
+  .msg-owner a {
     font-size: 12px;
   }
-  .msg-body{
+
+  .msg-body {
     color: white;
     font-style: bold;
   }
-  .participants{
+
+  .participants {
     position: fixed;
     right: 0;
     height: 700px;
@@ -80,20 +99,24 @@
     color: white;
     padding: 20px;
   }
-  .participants h3{
+
+  .participants h3 {
     margin-bottom: 10px;
-  }.participants p{
+  }
+
+  .participants p {
     margin: 10px 5px;
     color: rgb(151, 151, 255);
   }
-  hr{
+
+  hr {
     opacity: 5%;
     margin: 10px 0;
   }
 </style>
 
 <div class="room-container">
-  <div  class="talk">
+  <div class="talk">
     <div class="classroom-heading">
       <h3>{{room.name}}</h3>
 
@@ -103,9 +126,10 @@
     <div class="comment-wrapper">
       <div>
         {% for message in allmessages%}
-        
+
         <div class="msg-owner">
-          <small><small class="username">@{{message.user}}        </small>           <small class="time">      {{message.created|timesince}} ago</small></small>
+          <small><small class="username"> <a href="{% url 'profile' message.user.id %}">@{{message.user}}</a>  </small> <small class="time"> {{message.created|timesince}}
+              ago</small></small>
 
           {% if request.user == message.user%}
           <a href="{% url 'deletemessage' message.id %}">Delete</a>
@@ -114,30 +138,30 @@
         </div>
         <p class="msg-body">{{message.body}}</p>
         <hr />
-      {% endfor %}
+        {% endfor %}
       </div>
     </div>
 
-    </div>
-    {% if request.user.is_authenticated %}
-    <div class="comment-form">
-      <form action="" method="POST">
-        {% csrf_token %}
-        <input type="text" name="body" placeholder="write ur message here....." />
-      </form>
-    </div>
-    {% endif %}
   </div>
-  <div class="participants">
-    <h3>Participants</h3>
+  {% if request.user.is_authenticated %}
+  <div class="comment-form">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="text" name="body" placeholder="write ur message here....." />
+    </form>
+  </div>
+  {% endif %}
+</div>
+<div class="participants">
+  <h3>Participants</h3>
 
-    {% for user in participants %}
-    <div>
-      <p>@{{user.username}}</p>
-    </div>
-    {% endfor %}
+  {% for user in participants %}
+  <div>
+    <p>@{{user.username}}</p>
   </div>
-  <!-- <div class="recent-act">
+  {% endfor %}
+</div>
+<!-- <div class="recent-act">
     <div>
       <h3>Recent Activity</h3>
       <hr />

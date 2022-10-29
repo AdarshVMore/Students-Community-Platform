@@ -1,28 +1,56 @@
 <style>
-  .room-section, .room-section a,.room-section div, .room-section span , .room-section small, .room-section h3{
+  .room-section,
+  .room-section a,
+  .room-section div,
+  .room-section small,
+  .room-section h3 {
     background-color: var(--create-room-bgc);
     padding-left: 4px;
 
   }
-  .room-section{
-    
+  .room-name{
+    margin-top: -20px;
+  }
+
+  .room-section hr {
+    width: 92%;
+  }
+
+  .room-host {
+    font-size: 12px;
+  }
+
+  .room-topic {
+    color: var(--left-most-bgc);
+    margin: 2px 0;
+  }
+
+  .edit-room,
+  .delete-room {
+    font-size: 12px;
+    opacity: 50%;
   }
 </style>
 
 
 
 <div class="room-section">
-  {% for room in rooms %} {% if request.user == room.host %}
-  <a href="{% url 'updateroom' room.id %}">Edit</a>
-  <a href="{% url 'deleteroom' room.id %}">Delete</a>
-  {% endif %}
+  {% for room in rooms %}
+
   <div>
-    <span><a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></span>
-    <a href="/room/{{room.id}}">
-      <h3>{{room.name}}</h3>
+    <!-- <span><a href="{% url 'profile' room.host.id %}" class="room-host">-{{room.host.username}}</a></span> -->
+    <a href="/room/{{room.id}}" class="room-name">
+      <h3 title="">{{room.name}}</h3>
     </a>
-    <small>{{room.topic.name}}</small>
+    <div>
+      <p class="room-topic">{{room.topic.name}}</p>
+      {% if request.user == room.host %}
+      <a href="{% url 'updateroom' room.id %}" class="edit-room">Edit</a>
+      <a href="{% url 'deleteroom' room.id %}" class="delete-room">Delete</a>
+      {% endif %}
+    </div>
     <hr />
+
   </div>
   {% endfor %}
 </div>
