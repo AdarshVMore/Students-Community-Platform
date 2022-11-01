@@ -8,12 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class ModifiedForm(UserCreationForm):
-    email = forms.EmailField()
-    Year = forms.CharField(max_length=100)
-    Branch = forms.CharField(max_length=100)
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'Year', 'Branch']
+        fields = ['username', 'email', 'password1', 'password2']
 
 class RoomForm(ModelForm):
     class Meta:

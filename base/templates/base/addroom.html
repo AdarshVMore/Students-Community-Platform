@@ -1,13 +1,19 @@
 {% extends 'main.html' %}
 {% block content%}
 <style>
+        :root{
+    --top-nav-bgc: #3A3852;
+    --left-most-bgc: #242731;
+    --create-room-bgc: #2A2C3E;
+    }
 body{
     margin: 0;
     padding: 0;
     font-family:sans-serif;
     background-size: cover;
     background-color: #3a3852;
-      
+    font-family: 'Poppins', sans-serif;
+
 }
 
 .romcreate{
@@ -16,34 +22,41 @@ body{
     left: 50%; 
     transform: translate(-50%,-50%);
     width: 450px;
-    background: rgba(0,0,0,.8);
+    background: var(--left-most-bgc);
     padding:40px;
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.8);
-    border-radius: 10px;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
  
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 input[type="submit"]
 {
     background: transparent;
     border: none;
-    color: #fff;
-    background: #03a9f4;
-    padding:10px 20px;
+    color: var(--top-nav-bgc);
+    background: #00C2FF;
+    padding:10px 10px;
     cursor:pointer;
-    border-radius:5px;
+    border-radius:10px;
+    font-weight: bolder;
 }
 form label,select{
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
-    color: #03a9f4;
+    color: #00C2FF;
 }
 .romcreate h2{
     color: #fff;
 }
 form input,select{
-    width: 100%;
+    width: 350px;
     padding:10px 0;
     font-size: 16px;
     color: #fff;
@@ -60,9 +73,14 @@ form input,select{
     color:black;
 }
 form textarea{
-    width: 100%;
     color: white;
     background-color: #3a3852;
+    border: 0px solid;
+    outline: none;
+    padding: 12px;
+    height: 60px;
+    border-radius: 15px;
+    margin-top: 12px;
 }
 
 </style>
@@ -77,5 +95,5 @@ form textarea{
             <input type="submit" value="Submit">
         </form>
     </div>
-    {% endblock %}
 </body>
+{% endblock %}

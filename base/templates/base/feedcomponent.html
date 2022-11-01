@@ -37,7 +37,7 @@
 <div class="room-section">
   {% for room in rooms %}
 
-  <div>
+  <div title="-{{room.host.username}}">
     <!-- <span><a href="{% url 'profile' room.host.id %}" class="room-host">-{{room.host.username}}</a></span> -->
     <a href="/room/{{room.id}}" class="room-name">
       <h3 title="">{{room.name}}</h3>
